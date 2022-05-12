@@ -5,6 +5,7 @@ const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 
 const { obtenerUsuarios, 
+        obtenerUsuario,
         crearUsuario, 
         actualizarUsuario, 
         eliminarUsuario
@@ -25,6 +26,13 @@ router.put('/:id',[
         check('id').custom(existeUsuarioPorId),
         validarCampos
 ],actualizarUsuario);
+
+// Obtener una usuario por id
+router.get('/:id',[
+        check('id', 'No es un id valido').isMongoId(),
+        check('id').custom( existeUsuarioPorId ),
+        validarCampos
+      ],obtenerUsuario)
 
 //Crear usuario
 router.post('/', [

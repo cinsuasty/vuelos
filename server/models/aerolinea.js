@@ -15,8 +15,7 @@ const AerolineasShema = Schema({
 });
 
 AerolineasShema.methods.toJSON = function (){
-    const { __v, _id, estado,...aerolinea } = this.toObject();
-    aerolinea.id = _id;
+    const { __v, estado,...aerolinea } = this.toObject();
     return aerolinea;
 }
 

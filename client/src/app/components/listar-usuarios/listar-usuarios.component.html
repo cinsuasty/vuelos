@@ -3,9 +3,10 @@
         <div class="col-lg-8 offset-lg-2">
             <div class="card">
                 <div class="card-body text-center">
+                    <button class="btn btn-info float-start" routerLink="/">REGRESAR</button>
                     <span class="titulo">LISTADO DE USUARIOS</span>
                     <button class="btn btn-success float-end" routerLink="/crear-usuario">NUEVO</button>
-                    <table class="table table-striped mt-3">
+                    <table *ngIf="listUsuarios.length > 0" class="table table-striped mt-3">
                         <thead>
                           <tr>
                             <th scope="col">Nombre</th>
@@ -14,16 +15,17 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>Cesar Leonardo</td>
-                            <td>cesar19991354@gmail.com</td>
+                          <tr *ngFor="let usuario of listUsuarios">
+                            <td>{{usuario.nombre}}</td>
+                            <td>{{usuario.correo}}</td>
                             <td>
-                                <i class="fa-solid fa-pen-to-square text-primary"></i>
-                                <i class="fa-solid fa-trash text-danger"></i>
+                                <i class="fa-solid fa-pen-to-square text-primary" [routerLink]="['editar-usuario',usuario._id]"></i>
+                                <i class="fa-solid fa-trash text-danger" (click)="eliminarUsuario(usuario._id)"></i>
                             </td>
                           </tr>
                         </tbody>
                       </table>
+                      <h5 style="text-align:center; margin-top: 10px;" class="text-info" *ngIf="listUsuarios.length == 0">No hay usuarios para mostrar</h5>
                 </div>
             </div>
         </div>

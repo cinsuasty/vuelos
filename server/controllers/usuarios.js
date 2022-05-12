@@ -18,6 +18,18 @@ const obtenerUsuarios = async(req = request, res = response) => {
         usuarios
     })
 }
+
+// Obtener una aeropuerto por id 
+
+const obtenerUsuario = async(req = request, res = response) => {
+    const { id } = req.params;
+
+    const usuario = await Usuario.findById(id);
+
+    res.json(usuario);
+}
+
+
 // Crear usuario
 const crearUsuario = async (req, res = response) => {
 
@@ -53,5 +65,6 @@ module.exports= {
     obtenerUsuarios,
     crearUsuario,
     actualizarUsuario,
-    eliminarUsuario
+    eliminarUsuario,
+    obtenerUsuario
 }

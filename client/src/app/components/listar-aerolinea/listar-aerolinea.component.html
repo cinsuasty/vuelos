@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <button class="btn btn-info float-start" routerLink="/">REGRESAR</button>
+                    <span class="titulo">LISTADO DE AEROLINEAS</span>
+                    <button class="btn btn-success float-end" routerLink="/crear-aerolinea">NUEVO</button>
+                    <table *ngIf="listAerolineas.length > 0" class="table table-striped mt-3">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let aerolinea of listAerolineas">
+                            <td>{{aerolinea.nombre}}</td>
+                            <td>
+                                <i class="fa-solid fa-pen-to-square text-primary" [routerLink]="['/editar-aerolinea',aerolinea._id]"></i>
+                                <i class="fa-solid fa-trash text-danger" (click)="eliminarAerolinea(aerolinea._id)"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h5 style="text-align:center; margin-top: 10px;" class="text-info" *ngIf="listAerolineas.length == 0">No hay usuarios para mostrar</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
