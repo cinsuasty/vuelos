@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo">CREAR USUARIO</span>
+                    <form class="mt-3" [formGroup]="usuarioFrom" (ngSubmit)="agregarUsuario()">
+                        <div class="mb-3">
+                          <input type="text" formControlName="nombre" class="form-control form-control-lg" placeholder="Nombre">
+                            <div class="text-danger"
+                                *ngIf="usuarioFrom.get('nombre')?.hasError('required') && usuarioFrom.get('nombre')?.touched"
+                                >
+                                <span class="">El nombre del usuario <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" formControlName="correo" class="form-control form-control-lg" placeholder="Correo">
+                            <div class="text-danger"
+                            *ngIf="usuarioFrom.get('correo')?.hasError('required') && usuarioFrom.get('correo')?.touched"
+                            >
+                            <span class="">El correo <strong>es obligatorio</strong></span>
+                        </div>
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-secondary btn-lg float-start" routerLink="/">Volver</button>
+                            <button class="btn btn-success btn-lg float-end"[disabled]="usuarioFrom.invalid" type="submit">Aceptar</button>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
